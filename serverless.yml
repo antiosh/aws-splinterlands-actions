@@ -1,0 +1,32 @@
+service: aws-splinterlands-actions
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  timeout: 300 # 5 minutes 
+
+package:
+  patterns:
+    - src/**
+
+functions:
+  spsStake:
+    handler: src/handlers/staking_handler.run
+    events:
+      # Invoke Lambda function every 20 minutes
+      - schedule: rate(20 minutes)
+  spsClaimAirdrop:
+    handler: src/handlers/airdrop_handler.run
+    events:
+      # try a few times to claim airdrop
+      - schedule: cron(20 16,17,18 * * ? *)
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true

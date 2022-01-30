@@ -1,0 +1,15 @@
+{
+  "name": "aws-splinterlands-actions",
+  "version": "1.0.0",
+  "description": "Performs splinterlands actions using the serverless `schedule` event",
+  "author": "",
+  "license": "",
+  "scripts": {
+    "start": "python test.py",
+    "deploy": "serverless deploy",
+    "pip:install": "pip install -r requirements.txt"
+  },
+  "devDependencies": {
+    "serverless-python-requirements": "5.1.1"
+  }
+}
