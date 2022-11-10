@@ -5,6 +5,7 @@ import yaml
 from yaml.loader import SafeLoader
 from src.modules.logger import *
 from src.modules.splinterlands_actions import *
+from src.modules.goals_actions import *
 from src.modules.hive_actions import *
 
 DEFAULT_SLACK_CHANNEL = 'splinterlands-updates'
@@ -53,6 +54,11 @@ def process_config_tasks(config_file_name: str, writeable_directory_path: str = 
                 elif action == 'stake':
                     sps = get_sps_balance(hive_name)
                     stake(hive, hive_name, sps)
+                elif action == 'claim-staking-rewards-goals':
+                    stake_goals(hive, hive_name, 0)
+                elif action == 'stake-goals':
+                    glx = get_goals_balance(hive_name)
+                    stake_goals(hive, hive_name, glx)
                 elif 'transfer-sps-to-player' in action:
                     if has_active_key:
                       player_to_transfer_to = action.partition(':')[2]

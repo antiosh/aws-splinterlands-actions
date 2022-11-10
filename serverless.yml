@@ -18,6 +18,11 @@ functions:
     events:
       # Invoke Lambda function every 20 minutes
       - schedule: rate(20 minutes)
+  goalsStake:
+    handler: src/handlers/goals_staking_handler.run
+    events:
+      # Invoke Lambda function every 20 minutes
+      - schedule: rate(20 minutes)
   spsClaimAirdrop:
     handler: src/handlers/airdrop_handler.run
     events:

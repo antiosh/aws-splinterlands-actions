@@ -155,5 +155,6 @@ node_modules
 
 # has hive keys, dont want to commit
 staking_config.yaml 
+goals_staking_config.yaml 
 airdrop_config.yaml 
 test_config.yaml

@@ -2,6 +2,7 @@ from beem import Hive
 from datetime import datetime
 from time import sleep
 from src.modules.splinterlands_actions import get_sps_balance
+from src.modules.goals_actions import get_goals_balance
 from src.modules.logger import log
 
 APP_NAME = 'splinterlands-actions'
@@ -50,3 +51,25 @@ def transfer_token_to_player(hive: Hive, hive_name: str, sps: float, receiver: s
     return
 
   log(f"{datetime.now()} | {hive_name} | Transferred {sps} SPS to {receiver}")
+
+def stake_goals(hive: Hive, hive_name: str, glx: float):
+  json_data = {
+    "token": "GLX",
+    "qty": glx,
+    "to_player": hive_name,
+  }
+
+  try:
+    hive.custom_json("gls-plat-stake_tokens", required_auths=[hive_name], json_data=json_data)
+    sleep(BLOCK_WAIT_TIME) 
+  except Exception as e:
+    log(f"ERROR: Staking GOALS for {hive_name}")
+    log(f"{e}")
+    return
+
+  if glx == 0:
+    log(f"{datetime.now()} | {hive_name} | Claiming GOALS staking rewards")
+    new_balance = get_goals_balance(hive_name)
+    log(f"{datetime.now()} | {hive_name} | New balance GOALS {new_balance}")
+  else:
+    log(f"{datetime.now()} | {hive_name} | Staked GOALS {glx}")
