@@ -73,3 +73,24 @@ def stake_goals(hive: Hive, hive_name: str, glx: float):
     log(f"{datetime.now()} | {hive_name} | New balance GOALS {new_balance}")
   else:
     log(f"{datetime.now()} | {hive_name} | Staked GOALS {glx}")
+
+def stake_goals_packs(hive: Hive, hive_name: str, amount: float):
+  json_data = {
+    "token": "GMLSPA",
+    "qty": amount,
+  }
+
+  try:
+    hive.custom_json("gls-plat-stake_tokens", required_auths=[hive_name], json_data=json_data)
+    sleep(BLOCK_WAIT_TIME) 
+  except Exception as e:
+    log(f"ERROR: Staking GOALS Packs for {hive_name}")
+    log(f"{e}")
+    return
+
+  if amount == 0:
+    log(f"{datetime.now()} | {hive_name} | Claiming GOALS Packs staking rewards")
+    new_balance = get_goals_balance(hive_name)
+    log(f"{datetime.now()} | {hive_name} | New balance GOALS Packs {new_balance}")
+  else:
+    log(f"{datetime.now()} | {hive_name} | Staked GOALS Packs {amount}")
