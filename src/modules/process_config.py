@@ -58,6 +58,8 @@ def process_config_tasks(config_file_name: str, writeable_directory_path: str = 
                     stake_goals(hive, hive_name, 0)
                 elif action == 'claim-staking-rewards-goals-packs':
                     stake_goals_packs(hive, hive_name, 0)
+                elif action == 'claim-staking-rewards-goals-nodes':
+                    stake_goals_nodes(hive, hive_name, 0)
                 elif action == 'stake-goals':
                     glx = get_goals_balance(hive_name)
                     stake_goals(hive, hive_name, glx)

@@ -1,0 +1,15 @@
+hive-node: https://api.openhive.network
+slack-token: put-slack-token-here
+slack-channel: put-slack-channel-name-here
+accounts:
+  - name: put-hive-account-name-here
+    posting-key: put-hive-posting-key-here
+    active-key: put-hive-active-key-here
+    actions:
+      - claim-staking-rewards-goals
+      - claim-staking-rewards-goals-packs
+      - claim-staking-rewards-goals-nodes
+      - stake-goals
+      - claim-hive-sps-airdrop
+      - claim-staking-rewards
+      - transfer-sps-to-player:hive-account-name
